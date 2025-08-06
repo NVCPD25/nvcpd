@@ -28,17 +28,18 @@
         .badge {
             width: 70px;
             height: 70px;
-            background: #c9b037;
-            border-radius: 50%;
+            background: none;
+            border-radius: 0;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1rem auto;
-            box-shadow: 0 2px 12px #0006;
+            box-shadow: none;
         }
-        .badge svg {
-            width: 40px;
-            height: 40px;
+        .badge img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
         }
         header h1 {
             margin: 1.5rem 0 0 0;
@@ -190,11 +191,7 @@
     <header>
         <div class="gov-bar"></div>
         <div class="badge">
-            <svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
-                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
-                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
-            </svg>
+            <img src="images/your-badge.png" alt="NVCPD Badge">
         </div>
         <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
         <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
@@ -214,7 +211,9 @@
         <div class="container">
             <div class="welcome">Welcome to the NVCPD Official Website</div>
             <div class="dept-desc">
-                The Nowhereville County Police Department (NVCPD) is dedicated to serving our <a href="https://www.roblox.com/games/4991214437/town" style="color:#ffd100;">town</a> with professionalism, integrity, and respect.
+                The Nowhereville County Police Department (NVCPD) is dedicated to serving our 
+                <a href="https://www.roblox.com/games/4991214437/town" style="color:#ffd100;">town</a> 
+                with professionalism, integrity, and respect.
             </div>
             <div class="images-row">
                 <img src="images/novis.png" alt="NVCPD Patrol Car" title="NVCPD Patrol Car">
@@ -238,7 +237,7 @@
     <footer>
         &copy; 2025 Nowhereville County Police Department<br>
         Contact us at <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a> | 
-        <a href="https://discord.gg/33DPpRwG6E">Join our Discord</a>
+        <a href="#">Join our Discord</a>
     </footer>
 </body>
 </html>
