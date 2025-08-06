@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About NVCPD - Nowhereville County Police Department</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background: #1a2233;
+            color: #e3eaf2;
+        }
+        header {
+            background: #0d1624;
+            padding: 2rem 0 0.5rem 0;
+            text-align: center;
+            border-bottom: none;
+            position: relative;
+        }
+        .gov-bar {
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to right, #0033a0 70%, #ffd100 100%);
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            width: 70px;
+            height: 70px;
+            background: #c9b037;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 2px 12px #0006;
+        }
+        .badge svg {
+            width: 40px;
+            height: 40px;
+        }
+        header h1 {
+            margin: 1.5rem 0 0 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 2px 8px #0006;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            color: #b0bed9;
+            font-style: italic;
+        }
+        nav {
+            background: #0033a0;
+            margin-top: 1.5rem;
+            border-bottom: 4px solid #ffd100;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 1.5rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: color 0.2s, border-bottom 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #ffd100;
+            border-bottom: 2px solid #ffd100;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: #232c3d;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 2.5rem 2rem;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffd100;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+        .about-mission {
+            margin-bottom: 2rem;
+        }
+        .about-mission p {
+            margin: 0.5rem 0 0 0;
+            color: #e3eaf2;
+            font-size: 1.05rem;
+        }
+        .about-img {
+            display: block;
+            margin: 2rem auto;
+            max-width: 400px;
+            width: 100%;
+            background: #101624;
+            border-radius: 8px;
+            border: none;
+            box-shadow: none;
+        }
+        .division-list {
+            margin-top: 2rem;
+        }
+        .division-list h3 {
+            color: #ffd100;
+            margin-bottom: 0.2rem;
+            font-size: 1.08rem;
+        }
+        .division-list p {
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            color: #e3eaf2;
+            font-size: 1rem;
+        }
+        .join-btn {
+            display: block;
+            margin: 2.5rem auto 0 auto;
+            background: #3a5be0;
+            color: #fff;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            padding: 0.7rem 2.2rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .join-btn:hover {
+            background: #2647b0;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #334;
+            margin: 2rem 0 1.5rem 0;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 1rem 0.5rem;
+            }
+            .about-img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="gov-bar"></div>
+        <div class="badge">
+            <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
+                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
+                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
+            </svg>
+        </div>
+        <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
+        <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About NVCPD</a></li>
+                <li><a href="roster.html">Officer Roster</a></li>
+                <li><a href="cases.html">Case Files</a></li>
+                <li><a href="codes.html">10-Codes</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="section-title">Our Mission</div>
+            <div class="about-mission">
+                <p>
+                    The Nowhereville County Police Department is committed to ensuring safety, order, and trust within the community. We respond to emergencies, enforce laws, and serve the people of Nowhereville with honor and professionalism.
+                </p>
+            </div>
+            <img class="about-img" src="images/about_mission.jpg" alt="NVCPD Mission Image">
+            <hr>
+            <div class="section-title">Divisions of the NVCPD</div>
+            <div class="division-list">
+                <h3>High Command</h3>
+                <p>Senior leadership and command staff overseeing department strategy and performance.</p>
+                <h3>Critical Incident Response Team (CIRT)</h3>
+                <p>Handles tactical operations and responds to high-risk or dangerous incidents.</p>
+                <h3>Plot Safety & Community Service Unit (PS&amp;CSU)</h3>
+                <p>Maintains order during events and addresses raiders or disturbances around player plots.</p>
+                <h3>Patrol Unit</h3>
+                <p>Conducts routine patrols, enforces traffic laws, and responds to emergency calls daily.</p>
+                <h3>Cybersecurity Team</h3>
+                <p>Oversees internal systems, data protection, and digital infrastructure security.</p>
+                <h3>Canine Unit (K9)</h3>
+                <p>Trained K9 handlers for drug searches, raids, and suspect tracking during operations.</p>
+                <h3>Recruitment Unit</h3>
+                <p>Manages recruitment, onboarding, and training of new officers.</p>
+            </div>
+            <a class="join-btn" href="careers.html ">Join our community</a>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Nowhereville County Police Department<br>
+        Contact us at <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a> | 
+        <a href="#">Join our Discord</a>
+    </footer>
+</body>
+</html>

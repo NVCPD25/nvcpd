@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Files | Nowhereville County Police Department</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <!-- END Firebase SDKs -->
+    <style>
+        body { margin: 0; font-family: 'Roboto', 'Segoe UI', Arial, sans-serif; background: #1a2233; color: #e3eaf2; }
+        header { background: #0d1624; padding: 2rem 0 0.5rem 0; text-align: center; }
+        .gov-bar { width: 100%; height: 12px; background: linear-gradient(to right, #0033a0 70%, #ffd100 100%); margin-bottom: 0.5rem; }
+        .badge { width: 70px; height: 70px; background: #c9b037; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; box-shadow: 0 2px 12px #0006; }
+        .badge svg { width: 40px; height: 40px; }
+        header h1 { margin: 1.5rem 0 0 0; font-size: 2.2rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fff; text-shadow: 0 2px 8px #0006; }
+        header p { margin: 0.5rem 0 0 0; font-size: 1.1rem; color: #b0bed9; font-style: italic; }
+        nav { background: #0033a0; margin-top: 1.5rem; border-bottom: 4px solid #ffd100; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        nav li { margin: 0 1.5rem; position: relative; }
+        nav a, nav button.login-nav-btn { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.5px; transition: color 0.2s, border-bottom 0.2s; padding-bottom: 4px; border-bottom: 2px solid transparent; background: none; border: none; cursor: pointer; font-family: inherit; }
+        nav a:hover, nav a.active, nav button.login-nav-btn.active { color: #ffd100; border-bottom: 2px solid #ffd100; }
+        nav button.login-nav-btn:focus { outline: none; }
+        .cases-container { max-width: 900px; margin: 2.5rem auto; background: #232c3d; border-radius: 0.7rem; box-shadow: 0 2px 16px #0002; padding: 2.5rem 2rem; }
+        .cases-title { font-size: 2rem; font-weight: 700; color: #ffd100; margin-bottom: 1.5rem; text-align: center; }
+        .cases-controls { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; justify-content: space-between; }
+        .cases-controls input, .cases-controls select { padding: 0.5rem 1rem; font-size: 1rem; border-radius: 0.3rem; border: 1px solid #334; outline: none; background: #101624; color: #e3eaf2; }
+        .cases-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: #232c3d; }
+        .cases-table th, .cases-table td { padding: 0.7rem 0.5rem; text-align: left; border-bottom: 1px solid #334; }
+        .cases-table th { background: #101624; color: #ffd100; font-size: 1.1rem; }
+        .case-admin-panel { background: #101624; border: 1px solid #334; border-radius: 0.4rem; padding: 1.2rem 1rem; margin-bottom: 2rem; color: #e3eaf2; }
+        .case-admin-panel label { display: block; margin-bottom: 0.5rem; font-weight: 700; }
+        .case-admin-panel input, .case-admin-panel textarea, .case-admin-panel select { width: 100%; margin-bottom: 1rem; padding: 0.5rem; border-radius: 0.3rem; border: 1px solid #334; background: #232c3d; color: #e3eaf2; font-size: 1rem; }
+        .case-admin-panel button, .logout-btn { background: #0033a0; color: #fff; font-weight: 700; border: none; border-radius: 0.3rem; padding: 0.7rem 2rem; font-size: 1.1rem; cursor: pointer; transition: background 0.2s; margin-right: 1rem; }
+        .case-admin-panel button:hover, .logout-btn:hover { background: #ffd100; color: #0033a0; }
+        .login-panel { background: #101624; border: 1px solid #334; border-radius: 0.4rem; padding: 1.2rem 1rem; margin-bottom: 2rem; color: #e3eaf2; max-width: 350px; }
+        .login-panel label { display: block; margin-bottom: 0.5rem; font-weight: 700; }
+        .login-panel input { width: 100%; margin-bottom: 1rem; padding: 0.5rem; border-radius: 0.3rem; border: 1px solid #334; background: #232c3d; color: #e3eaf2; font-size: 1rem; }
+        .login-btn { background: #0033a0; color: #fff; font-weight: 700; border: none; border-radius: 0.3rem; padding: 0.7rem 2rem; font-size: 1.1rem; cursor: pointer; transition: background 0.2s; text-decoration: none; display: inline-block; }
+        .login-btn:hover { background: #ffd100; color: #0033a0; }
+        .case-status-open { color: #2ecc71; font-weight: 700; }
+        .case-status-closed { color: #e57373; font-weight: 700; }
+        .admin-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .action-btn { background: #0033a0; color: #fff; border: none; border-radius: 0.3rem; padding: 0.3rem 1rem; font-size: 1rem; font-weight: 700; margin-right: 0.5rem; cursor: pointer; transition: background 0.2s; }
+        .action-btn:hover { background: #ffd100; color: #0033a0; }
+        @media (max-width: 900px) { .cases-container { padding: 1rem 0.5rem; } .cases-controls { flex-direction: column; gap: 0.5rem; } .cases-table th, .cases-table td { font-size: 0.98rem; } }
+        footer { background: #0d1624; color: #b0bed9; text-align: center; padding: 1.5rem 0 1rem 0; font-size: 1rem; margin-top: 3rem; border-top: 5px solid #0033a0; }
+        footer a { color: #ffd100; text-decoration: underline; }
+    </style>
+    <script>
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyCrT_jKmlN9luLyJOeFdIs3slGrYK7jK54",
+            authDomain: "nvcpd-backend.firebaseapp.com",
+            projectId: "nvcpd-backend",
+            storageBucket: "nvcpd-backend.appspot.com",
+            messagingSenderId: "280445476576",
+            appId: "1:280445476576:web:c6d27673c50456728f7a85",
+            measurementId: "G-LFX42PWFSF"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        let adminEmails = [];
+        let isAdmin = false;
+        let cases = [];
+        let editCaseId = null;
+
+        // Load admin emails from Firestore (admins collection, field: email)
+        async function loadAdminEmails() {
+            const snapshot = await db.collection('admins').get();
+            adminEmails = snapshot.docs.map(doc => doc.data().email);
+        }
+
+        // Load cases from Firestore
+        async function loadCases() {
+            const snapshot = await db.collection('cases').orderBy('date', 'desc').get();
+            cases = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            renderCases();
+        }
+
+        // Save (add or update) a case to Firestore
+        async function saveCase(caseObj) {
+            if (caseObj.id) {
+                await db.collection('cases').doc(caseObj.id).set(caseObj);
+            } else {
+                const docRef = await db.collection('cases').add(caseObj);
+                caseObj.id = docRef.id;
+            }
+            await loadCases();
+        }
+
+        // Remove a case from Firestore
+        async function removeCase(id) {
+            await db.collection('cases').doc(id).delete();
+            await loadCases();
+        }
+
+        function renderCases() {
+            const tbody = document.getElementById('cases-tbody');
+            const search = document.getElementById('search').value.toLowerCase();
+            const filter = document.getElementById('filter').value;
+            tbody.innerHTML = "";
+            cases.forEach(c => {
+                const matchesSearch = c.title.toLowerCase().includes(search) ||
+                                     c.officer.toLowerCase().includes(search) ||
+                                     c.type.toLowerCase().includes(search) ||
+                                     c.description.toLowerCase().includes(search);
+                const matchesFilter = filter === "all" || c.status === filter;
+                if (matchesSearch && matchesFilter) {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${c.title}</td>
+                        <td>${c.officer}</td>
+                        <td>${c.type}</td>
+                        <td>${c.date}</td>
+                        <td><span class="case-status-${c.status && c.status.toLowerCase()}">${c.status}</span></td>
+                        <td>${c.description}</td>
+                        ${isAdmin ? `
+                        <td>
+                            <button class="action-btn edit-btn" data-id="${c.id}">Edit</button>
+                            <button class="action-btn remove-btn" data-id="${c.id}">Remove</button>
+                        </td>
+                        ` : ""}
+                    `;
+                    tbody.appendChild(tr);
+                }
+            });
+
+            document.getElementById('actions-header').style.display = isAdmin ? '' : 'none';
+
+            if (isAdmin) {
+                document.querySelectorAll('.remove-btn').forEach(btn => {
+                    btn.onclick = async function() {
+                        const id = this.dataset.id;
+                        if (confirm("Are you sure you want to remove this case file?")) {
+                            await removeCase(id);
+                        }
+                    };
+                });
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.onclick = function() {
+                        const id = this.dataset.id;
+                        startEditCase(id);
+                    };
+                });
+            }
+        }
+
+        function showAdminPanel(show) {
+            document.getElementById('admin-panel').style.display = show ? '' : 'none';
+        }
+
+        function showLoginPanel(show) {
+            document.getElementById('login-panel').style.display = show ? '' : 'none';
+            document.getElementById('login-nav-btn').classList.toggle('active', show);
+        }
+
+        // Firebase Auth login
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-user').value;
+            const password = document.getElementById('login-pass').value;
+            try {
+                const result = await firebase.auth().signInWithEmailAndPassword(email, password);
+                // Only allow admin emails
+                if (adminEmails.includes(email)) {
+                    isAdmin = true;
+                    showAdminPanel(true);
+                    showLoginPanel(false);
+                    renderCases();
+                } else {
+                    await firebase.auth().signOut();
+                    alert("You are not an admin.");
+                }
+            } catch (error) {
+                alert("Login failed: " + error.message);
+            }
+        }
+
+        function handleLogout() {
+            isAdmin = false;
+            firebase.auth().signOut();
+            showAdminPanel(false);
+            renderCases();
+            editCaseId = null;
+            document.getElementById('case-form-submit').textContent = "Add Case File";
+            document.getElementById('case-form').reset();
+        }
+
+        async function handleAddCase(e) {
+            e.preventDefault();
+            const title = document.getElementById('case-title').value;
+            const officer = document.getElementById('case-officer').value;
+            const type = document.getElementById('case-type').value;
+            const status = document.getElementById('case-status').value;
+            const description = document.getElementById('case-description').value;
+            const date = document.getElementById('case-date').value;
+            if (!title || !officer || !type || !status || !description || !date) {
+                alert("Please fill in all fields.");
+                return;
+            }
+            if (editCaseId) {
+                await saveCase({ id: editCaseId, title, officer, type, status, description, date });
+                editCaseId = null;
+                document.getElementById('case-form-submit').textContent = "Add Case File";
+            } else {
+                await saveCase({ title, officer, type, status, description, date });
+            }
+            document.getElementById('case-form').reset();
+        }
+
+        function startEditCase(id) {
+            const c = cases.find(c => c.id === id);
+            if (!c) return;
+            editCaseId = id;
+            document.getElementById('case-title').value = c.title;
+            document.getElementById('case-officer').value = c.officer;
+            document.getElementById('case-type').value = c.type;
+            document.getElementById('case-status').value = c.status;
+            document.getElementById('case-date').value = c.date;
+            document.getElementById('case-description').value = c.description;
+            document.getElementById('case-form-submit').textContent = "Save Changes";
+        }
+
+        // Listen for auth state changes
+        firebase.auth().onAuthStateChanged(async function(user) {
+            if (user && adminEmails.includes(user.email)) {
+                isAdmin = true;
+                showAdminPanel(true);
+                showLoginPanel(false);
+                renderCases();
+            } else {
+                isAdmin = false;
+                showAdminPanel(false);
+                renderCases();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadAdminEmails();
+            await loadCases();
+            document.getElementById('search').addEventListener('input', renderCases);
+            document.getElementById('filter').addEventListener('change', renderCases);
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('case-form').addEventListener('submit', handleAddCase);
+            document.getElementById('logout-btn').addEventListener('click', handleLogout);
+            document.getElementById('login-nav-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const panel = document.getElementById('login-panel');
+                const isOpen = panel.style.display !== 'none';
+                showLoginPanel(!isOpen);
+            });
+            showLoginPanel(false);
+            showAdminPanel(false);
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="gov-bar"></div>
+        <div class="badge">
+            <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
+                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
+                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
+            </svg>
+        </div>
+        <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
+        <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About NVCPD</a></li>
+                <li><a href="roster.html">Officer Roster</a></li>
+                <li><a href="cases.html" class="active">Case Files</a></li>
+                <li><a href="codes.html">10-Codes</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li>
+                    <button type="button" id="login-nav-btn" class="login-nav-btn">Login</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="cases-container">
+            <div class="cases-title">Case Files</div>
+            <div class="cases-controls">
+                <input id="search" type="text" placeholder="Search by title, officer, type, or description...">
+                <select id="filter">
+                    <option value="all">All Statuses</option>
+                    <option value="Open">Open</option>
+                    <option value="Closed">Closed</option>
+                </select>
+            </div>
+            <div id="login-panel" class="login-panel" style="display:none;">
+                <form id="login-form">
+                    <label for="login-user">Admin Email</label>
+                    <input id="login-user" type="email" autocomplete="username" required>
+                    <label for="login-pass">Password</label>
+                    <input id="login-pass" type="password" autocomplete="current-password" required>
+                    <button type="submit" class="login-btn">Login as Admin</button>
+                </form>
+            </div>
+            <div id="admin-panel" class="case-admin-panel" style="display:none;">
+                <div class="admin-panel-header">
+                    <span><b>Admin Panel</b></span>
+                    <button type="button" class="logout-btn" id="logout-btn">Log Out</button>
+                </div>
+                <form id="case-form">
+                    <label for="case-title">Case Title</label>
+                    <input id="case-title" type="text" required>
+                    <label for="case-officer">Officer</label>
+                    <input id="case-officer" type="text" required>
+                    <label for="case-type">Type</label>
+                    <input id="case-type" type="text" required>
+                    <label for="case-status">Status</label>
+                    <select id="case-status" required>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                    <label for="case-date">Date</label>
+                    <input id="case-date" type="date" required>
+                    <label for="case-description">Description</label>
+                    <textarea id="case-description" rows="3" required></textarea>
+                    <button type="submit" id="case-form-submit">Add Case File</button>
+                </form>
+            </div>
+            <table class="cases-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Officer</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th id="actions-header" style="display:none;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="cases-tbody">
+                    <!-- Case rows will be rendered here -->
+                </tbody>
+            </table>
+            <div style="color:#b0bed9;font-size:1rem;">
+                <b>Tip:</b> Only logged-in admins can add, edit, or remove case files. All visitors can search and view case files.
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Nowhereville County Police Department. All rights reserved.<br>
+        Contact us at <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a> | 
+        <a href="#">Join our Discord</a>
+    </footer>
+</body>
+</html>

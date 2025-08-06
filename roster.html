@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Roster | Nowhereville County Police Department</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background: #1a2233;
+            color: #e3eaf2;
+        }
+        header {
+            background: #0d1624;
+            padding: 2rem 0 0.5rem 0;
+            text-align: center;
+        }
+        .gov-bar {
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to right, #0033a0 70%, #ffd100 100%);
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            width: 70px;
+            height: 70px;
+            background: #c9b037;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 2px 12px #0006;
+        }
+        .badge svg {
+            width: 40px;
+            height: 40px;
+        }
+        header h1 {
+            margin: 1.5rem 0 0 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 2px 8px #0006;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            color: #b0bed9;
+            font-style: italic;
+        }
+        nav {
+            background: #0033a0;
+            margin-top: 1.5rem;
+            border-bottom: 4px solid #ffd100;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 1.5rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: color 0.2s, border-bottom 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #ffd100;
+            border-bottom: 2px solid #ffd100;
+        }
+        .roster-container {
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            background: #232c3d;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 16px #0002;
+            padding: 2.5rem 2rem;
+        }
+        .roster-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd100;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .roster-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .roster-controls input,
+        .roster-controls select {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.3rem;
+            border: 1px solid #334;
+            outline: none;
+            background: #101624;
+            color: #e3eaf2;
+        }
+        .roster-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: #232c3d;
+        }
+        .roster-table th, .roster-table td {
+            padding: 0.8rem 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #334;
+        }
+        .roster-table th {
+            background: #101624;
+            color: #ffd100;
+            font-size: 1.1rem;
+        }
+        .roster-section {
+            margin-top: 2.5rem;
+        }
+        .roster-section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffd100;
+            border-left: 5px solid #ffd100;
+            padding-left: 0.7rem;
+            margin-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        .officer-photo {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 0.3rem;
+            background: #101624;
+            border: 1px solid #334;
+        }
+        .officer-name-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .mini-badge {
+            width: 22px;
+            height: 22px;
+            background: #c9b037;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 4px #0002;
+        }
+        .mini-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+        .status-active {
+            color: #2ecc71;
+            font-weight: 700;
+        }
+        .status-inactive {
+            color: #e57373;
+            font-weight: 700;
+        }
+        @media (max-width: 900px) {
+            .roster-container { padding: 1rem 0.5rem; }
+            .roster-controls { flex-direction: column; gap: 0.5rem; }
+            .roster-table th, .roster-table td { font-size: 0.98rem; }
+        }
+        footer {
+            background: #0d1624;
+            color: #b0bed9;
+            text-align: center;
+            padding: 1.5rem 0 1rem 0;
+            font-size: 1rem;
+            margin-top: 3rem;
+            border-top: 5px solid #0033a0;
+        }
+        footer a {
+            color: #ffd100;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Simple filtering logic for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const divisionSelect = document.getElementById('division');
+            const allRows = Array.from(document.querySelectorAll('.officer-row'));
+
+            function filterRows() {
+                const search = searchInput.value.toLowerCase();
+                const division = divisionSelect.value;
+                allRows.forEach(row => {
+                    const name = row.dataset.name.toLowerCase();
+                    const badge = row.dataset.badge.toLowerCase();
+                    const rank = row.dataset.rank.toLowerCase();
+                    const section = row.dataset.section;
+                    const matchesSearch = name.includes(search) || badge.includes(search) || rank.includes(search);
+                    const matchesDivision = division === 'all' || section === division;
+                    row.style.display = (matchesSearch && matchesDivision) ? '' : 'none';
+                });
+            }
+
+            searchInput.addEventListener('input', filterRows);
+            divisionSelect.addEventListener('change', filterRows);
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="gov-bar"></div>
+        <div class="badge">
+            <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
+                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
+                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
+            </svg>
+        </div>
+        <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
+        <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About NVCPD</a></li>
+                <li><a href="roster.html" class="active">Officer Roster</a></li>
+                <li><a href="cases.html">Case Files</a></li>
+                <li><a href="codes.html">10-Codes</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="roster-container">
+            <div class="roster-title">Officer Roster</div>
+            <div class="roster-controls">
+                <input id="search" type="text" placeholder="Search by name, badge #, or rank...">
+                <select id="division">
+                    <option value="all">All Divisions</option>
+                    <option value="high-command">High Command</option>
+                    <option value="cirt">Critical Incident Response Team</option>
+                    <option value="plot">Plot Safety & Community Service Unit</option>
+                    <option value="k9">K9 Unit</option>
+                    <option value="patrol">Patrol Unit</option>
+                </select>
+            </div>
+
+            <!-- High Command -->
+            <div class="roster-section">
+                <div class="roster-section-title">High Command</div>
+                <table class="roster-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Badge #</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="officer-row" data-section="high-command" data-name="Cameron M." data-badge="0000" data-rank="Commissioner">
+                            <td><img src="images/cameron.jpg" alt="Cameron M." class="officer-photo"></td>
+                            <td>
+                                <div class="officer-name-badge">
+                                    Cameron M.
+                                    <span class="mini-badge">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>Commissioner</td>
+                            <td>0000</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                        <tr class="officer-row" data-section="high-command" data-name="Shane K." data-badge="0000" data-rank="Chief">
+                            <td><img src="images/chief.jpg" alt="Shane K." class="officer-photo"></td>
+                            <td>
+                                <div class="officer-name-badge">
+                                    Shane K.
+                                    <span class="mini-badge">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>Chief</td>
+                            <td>0000</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Critical Incident Response Team -->
+            <div class="roster-section">
+                <div class="roster-section-title">Critical Incident Response Team</div>
+                <table class="roster-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Badge #</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="officer-row" data-section="cirt" data-name="Alex R." data-badge="1001" data-rank="Sergeant">
+                            <td><img src="images/alexr.jpg" alt="Alex R." class="officer-photo"></td>
+                            <td>
+                                <div class="officer-name-badge">
+                                    Alex R.
+                                    <span class="mini-badge">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>Sergeant</td>
+                            <td>1001</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Plot Safety & Community Service Unit -->
+            <div class="roster-section">
+                <div class="roster-section-title">Plot Safety & Community Service Unit</div>
+                <table class="roster-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Badge #</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="officer-row" data-section="plot" data-name="Jamie L." data-badge="2002" data-rank="Officer">
+                            <td><img src="images/jamiel.jpg" alt="Jamie L." class="officer-photo"></td>
+                            <td>
+                                <div class="officer-name-badge">
+                                    Jamie L.
+                                    <span class="mini-badge">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>Officer</td>
+                            <td>2002</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- K9 Unit -->
+            <div class="roster-section">
+                <div class="roster-section-title">K9 Unit</div>
+                <table class="roster-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Badge #</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="officer-row" data-section="k9" data-name="Taylor S." data-badge="3003" data-rank="K9 Handler">
+                            <td><img src="images/taylors.jpg" alt="Taylor S." class="officer-photo"></td>
+                            <td>
+                                <div class="officer-name-badge">
+                                    Taylor S.
+                                    <span class="mini-badge">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>K9 Handler</td>
+                            <td>3003</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Patrol Unit -->
+            <div class="roster-section">
+                <div class="roster-section-title">Patrol Unit</div>
+                <table class="roster-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Rank</th>
+                            <th>Badge #</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="officer-row" data-section="patrol" data-name="Morgan P." data-badge="4004" data-rank="Officer">
+                            <td><img src="images/morganp.jpg" alt="Morgan P." class="officer-photo"></td>
+                            <td>
+                                <div class="officer-name-badge">
+                                    Morgan P.
+                                    <span class="mini-badge">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>Officer</td>
+                            <td>4004</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                        <tr class="officer-row" data-section="patrol" data-name="Jordan Q." data-badge="4005" data-rank="Officer">
+                            <td><img src="images/jordanq.jpg" alt="Jordan Q." class="officer-photo"></td>
+                            <td>
+                                <div class="officer-name-badge">
+                                    Jordan Q.
+                                    <span class="mini-badge">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
+                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>Officer</td>
+                            <td>4005</td>
+                            <td><span class="status-inactive">Inactive</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Nowhereville

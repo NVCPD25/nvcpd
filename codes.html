@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Codes | Nowhereville County Police Department</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background: #1a2233;
+            color: #e3eaf2;
+        }
+        header {
+            background: #0d1624;
+            padding: 2rem 0 0.5rem 0;
+            text-align: center;
+        }
+        .gov-bar {
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to right, #0033a0 70%, #ffd100 100%);
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            width: 70px;
+            height: 70px;
+            background: #c9b037;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 2px 12px #0006;
+        }
+        .badge svg {
+            width: 40px;
+            height: 40px;
+        }
+        header h1 {
+            margin: 1.5rem 0 0 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 2px 8px #0006;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            color: #b0bed9;
+            font-style: italic;
+        }
+        nav {
+            background: #0033a0;
+            margin-top: 1.5rem;
+            border-bottom: 4px solid #ffd100;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 1.5rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: color 0.2s, border-bottom 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #ffd100;
+            border-bottom: 2px solid #ffd100;
+        }
+        .codes-container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: #232c3d;
+            border-radius: 0.7rem;
+            box-shadow: 0 2px 16px #0002;
+            padding: 2.5rem 2rem;
+        }
+        .codes-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd100;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .codes-section-title {
+            color: #ffd100;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .codes-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            justify-content: space-between;
+        }
+        .codes-controls input,
+        .codes-controls select {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.3rem;
+            border: 1px solid #334;
+            outline: none;
+            background: #101624;
+            color: #e3eaf2;
+        }
+        table.codes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: #232c3d;
+        }
+        .codes-table th, .codes-table td {
+            padding: 0.7rem 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #334;
+        }
+        .codes-table th {
+            background: #101624;
+            color: #ffd100;
+            font-size: 1.1rem;
+        }
+        .codes-type {
+            color: #b0bed9;
+            font-size: 0.98rem;
+        }
+        @media (max-width: 900px) {
+            .codes-container { padding: 1rem 0.5rem; }
+            .codes-controls { flex-direction: column; gap: 0.5rem; }
+            .codes-table th, .codes-table td { font-size: 0.98rem; }
+        }
+        footer {
+            background: #0d1624;
+            color: #b0bed9;
+            text-align: center;
+            padding: 1.5rem 0 1rem 0;
+            font-size: 1rem;
+            margin-top: 3rem;
+            border-top: 5px solid #0033a0;
+        }
+        footer a {
+            color: #ffd100;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const filterSelect = document.getElementById('filter');
+            const allRows = Array.from(document.querySelectorAll('.code-row'));
+
+            function filterRows() {
+                const search = searchInput.value.toLowerCase();
+                const filter = filterSelect.value;
+                allRows.forEach(row => {
+                    const code = row.dataset.code;
+                    const desc = row.dataset.desc.toLowerCase();
+                    const matchesSearch = code.includes(search) || desc.includes(search);
+                    const matchesFilter = filter === 'all' || code.startsWith(filter);
+                    row.style.display = (matchesSearch && matchesFilter) ? '' : 'none';
+                });
+            }
+
+            searchInput.addEventListener('input', filterRows);
+            filterSelect.addEventListener('change', filterRows);
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="gov-bar"></div>
+        <div class="badge">
+            <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
+                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
+                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
+            </svg>
+        </div>
+        <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
+        <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About NVCPD</a></li>
+                <li><a href="roster.html">Officer Roster</a></li>
+                <li><a href="cases.html">Case Files</a></li>
+                <li><a href="codes.html" class="active">10-Codes</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="codes-container">
+            <div class="codes-title">10-Codes Reference</div>
+            <div class="codes-controls">
+                <input id="search" type="text" placeholder="Search by code or meaning...">
+                <select id="filter">
+                    <option value="all">All Codes</option>
+                    <option value="10-1">10-1x</option>
+                    <option value="10-2">10-2x</option>
+                    <option value="10-3">10-3x</option>
+                    <option value="10-4">10-4x</option>
+                    <option value="10-5">10-5x</option>
+                    <option value="10-6">10-6x</option>
+                    <option value="10-7">10-7x</option>
+                    <option value="10-8">10-8x</option>
+                    <option value="10-9">10-9x</option>
+                    <option value="10-1">10-10x</option>
+                    <option value="10-2">10-20x</option>
+                    <option value="10-3">10-30x</option>
+                    <option value="10-4">10-40x</option>
+                    <option value="10-5">10-50x</option>
+                    <option value="10-9">10-90x</option>
+                </select>
+            </div>
+            <div class="codes-section-title">10-Codes for CB Radio</div>
+            <table class="codes-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="code-row" data-code="10-1" data-desc="Receiving poorly"><td>10-1</td><td>Receiving poorly</td></tr>
+                    <tr class="code-row" data-code="10-2" data-desc="Receiving well"><td>10-2</td><td>Receiving well</td></tr>
+                    <tr class="code-row" data-code="10-3" data-desc="Stop transmitting"><td>10-3</td><td>Stop transmitting</td></tr>
+                    <tr class="code-row" data-code="10-4" data-desc="Message received"><td>10-4</td><td>Message received</td></tr>
+                    <tr class="code-row" data-code="10-5" data-desc="Relay message"><td>10-5</td><td>Relay message</td></tr>
+                    <tr class="code-row" data-code="10-6" data-desc="Busy, stand by"><td>10-6</td><td>Busy, stand by</td></tr>
+                    <tr class="code-row" data-code="10-7" data-desc="Out of service, leaving the air"><td>10-7</td><td>Out of service, leaving the air</td></tr>
+                    <tr class="code-row" data-code="10-8" data-desc="In service, subject to call"><td>10-8</td><td>In service, subject to call</td></tr>
+                    <tr class="code-row" data-code="10-9" data-desc="Repeat message"><td>10-9</td><td>Repeat message</td></tr>
+                    <tr class="code-row" data-code="10-10" data-desc="Transmission completed, standing by"><td>10-10</td><td>Transmission completed, standing by</td></tr>
+                    <tr class="code-row" data-code="10-13" data-desc="Advise weather/road conditions"><td>10-13</td><td>Advise weather/road conditions</td></tr>
+                    <tr class="code-row" data-code="10-20" data-desc="Your current location"><td>10-20</td><td>Your current location</td></tr>
+                    <tr class="code-row" data-code="10-21" data-desc="Call by telephone"><td>10-21</td><td>Call by telephone</td></tr>
+                    <tr class="code-row" data-code="10-23" data-desc="Stand by"><td>10-23</td><td>Stand by</td></tr>
+                    <tr class="code-row" data-code="10-25" data-desc="Can you contact [person's name]?"><td>10-25</td><td>Can you contact [person's name]?</td></tr>
+                    <tr class="code-row" data-code="10-33" data-desc="Emergency traffic"><td>10-33</td><td>Emergency traffic</td></tr>
+                </tbody>
+            </table>
+            <div class="codes-section-title">10-Codes for Law Enforcement</div>
+            <table class="codes-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="code-row" data-code="10-4" data-desc="Affirmative"><td>10-4</td><td>Affirmative</td></tr>
+                    <tr class="code-row" data-code="10-6" data-desc="Busy"><td>10-6</td><td>Busy</td></tr>
+                    <tr class="code-row" data-code="10-7" data-desc="Out of service"><td>10-7</td><td>Out of service</td></tr>
+                    <tr class="code-row" data-code="10-8" data-desc="In service"><td>10-8</td><td>In service</td></tr>
+                    <tr class="code-row" data-code="10-9" data-desc="Repeat"><td>10-9</td><td>Repeat</td></tr>
+                    <tr class="code-row" data-code="10-15" data-desc="Prisoner in custody"><td>10-15</td><td>Prisoner in custody</td></tr>
+                    <tr class="code-row" data-code="10-20" data-desc="Location"><td>10-20</td><td>Location</td></tr>
+                    <tr class="code-row" data-code="10-21" data-desc="Call by telephone"><td>10-21</td><td>Call by telephone</td></tr>
+                    <tr class="code-row" data-code="10-25" data-desc="Report to [location]"><td>10-25</td><td>Report to [location]</td></tr>
+                    <tr class="code-row" data-code="10-33" data-desc="Emergency"><td>10-33</td><td>Emergency</td></tr>
+                    <tr class="code-row" data-code="10-41" data-desc="Beginning tour of duty"><td>10-41</td><td>Beginning tour of duty</td></tr>
+                    <tr class="code-row" data-code="10-42" data-desc="Ending tour of duty"><td>10-42</td><td>Ending tour of duty</td></tr>
+                    <tr class="code-row" data-code="10-49" data-desc="Traffic situation"><td>10-49</td><td>Traffic situation</td></tr>
+                    <tr class="code-row" data-code="10-50" data-desc="Accident"><td>10-50</td><td>Accident</td></tr>
+                    <tr class="code-row" data-code="10-99" data-desc="Wanted/stolen indicated"><td>10-99</td><td>Wanted/stolen indicated</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Nowhereville County Police Department. All rights reserved.<br>
+        Contact us at <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a> | 
+        <a href="#">Join our Discord</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nowhereville County Police Department</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background: #1a2233;
+            color: #e3eaf2;
+        }
+        header {
+            background: #0d1624;
+            padding: 2rem 0 0.5rem 0;
+            text-align: center;
+            border-bottom: none;
+            position: relative;
+        }
+        .gov-bar {
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to right, #0033a0 70%, #ffd100 100%);
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            width: 70px;
+            height: 70px;
+            background: #c9b037;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 2px 12px #0006;
+        }
+        .badge svg {
+            width: 40px;
+            height: 40px;
+        }
+        header h1 {
+            margin: 1.5rem 0 0 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 2px 8px #0006;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            color: #b0bed9;
+            font-style: italic;
+        }
+        nav {
+            background: #0033a0;
+            margin-top: 1.5rem;
+            border-bottom: 4px solid #ffd100;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 1.5rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: color 0.2s, border-bottom 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #ffd100;
+            border-bottom: 2px solid #ffd100;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: #232c3d;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 2.5rem 2rem;
+        }
+        .welcome {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffd100;
+            letter-spacing: 1px;
+        }
+        .dept-desc {
+            margin-bottom: 2rem;
+            color: #b0bed9;
+            font-size: 1.1rem;
+        }
+        .images-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .images-row img {
+            border-radius: 0;
+            max-width: 220px;
+            background: #101624;
+            min-height: 120px;
+            object-fit: cover;
+            border: none;
+            box-shadow: none;
+        }
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+            color: #ffd100;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #334;
+            padding-bottom: 0.2rem;
+        }
+        .chief-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .chief-info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 0;
+            object-fit: cover;
+            background: #101624;
+            border: none;
+            box-shadow: none;
+        }
+        .chief-bio {
+            flex: 1;
+        }
+        .tips-list {
+            margin: 0.5rem 0 1.5rem 1.5rem;
+            color: #e3eaf2;
+        }
+        .tips-list li {
+            margin-bottom: 0.5rem;
+        }
+        footer {
+            background: #0d1624;
+            color: #b0bed9;
+            text-align: center;
+            padding: 1.5rem 0 1rem 0;
+            font-size: 1rem;
+            margin-top: 3rem;
+            border-top: 5px solid #0033a0;
+        }
+        footer a {
+            color: #ffd100;
+            text-decoration: underline;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 1rem 0.5rem;
+            }
+            .images-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .chief-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .badge {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="gov-bar"></div>
+        <div class="badge">
+            <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
+                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
+                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
+            </svg>
+        </div>
+        <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
+        <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About NVCPD</a></li>
+                <li><a href="roster.html">Officer Roster</a></li>
+                <li><a href="cases.html">Case Files</a></li>
+                <li><a href="codes.html">10-Codes</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="welcome">Welcome to the NVCPD Official Website</div>
+            <div class="dept-desc">
+                The Nowhereville County Police Department (NVCPD) is dedicated to serving our <a href="https://www.roblox.com/games/4991214437/town" style="color:#ffd100;">town</a> with professionalism, integrity, and respect.
+            </div>
+            <div class="images-row">
+                <img src="images/novis.png" alt="NVCPD Patrol Car" title="NVCPD Patrol Car">
+            </div>
+            <div class="section-title">Meet the Chief</div>
+            <div class="chief-info">
+                <img src="images/chief.jpg" alt="Chief Image" title="Chief">
+                <div class="chief-bio">
+                    <strong>Chief Shane K.</strong> leads the NVCPD with over a decade of experience in law enforcement and public safety. His commitment to justice and leadership drives our mission forward.
+                </div>
+            </div>
+            <div class="section-title">Public Safety Tips</div>
+            <ul class="tips-list">
+                <li>Always lock your vehicle and home doors.</li>
+                <li>Report suspicious activity immediately.</li>
+                <li>Obey all local traffic laws and signals.</li>
+                <li>Stay aware of your surroundings at night.</li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Nowhereville County Police Department<br>
+        Contact us at <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a> | 
+        <a href="#">Join our Discord</a>
+    </footer>
+</body>
+</html>

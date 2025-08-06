@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers at NVCPD</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background: #1a2233;
+            color: #e3eaf2;
+        }
+        header {
+            background: #0d1624;
+            padding: 2rem 0 0.5rem 0;
+            text-align: center;
+        }
+        .gov-bar {
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to right, #0033a0 70%, #ffd100 100%);
+            margin-bottom: 0.5rem;
+        }
+        .badge {
+            width: 70px;
+            height: 70px;
+            background: #c9b037;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 2px 12px #0006;
+        }
+        .badge svg {
+            width: 40px;
+            height: 40px;
+        }
+        header h1 {
+            margin: 1.5rem 0 0 0;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 2px 8px #0006;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.1rem;
+            color: #b0bed9;
+            font-style: italic;
+        }
+        nav {
+            background: #0033a0;
+            margin-top: 1.5rem;
+            border-bottom: 4px solid #ffd100;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 1.5rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            transition: color 0.2s, border-bottom 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover, nav a.active {
+            color: #ffd100;
+            border-bottom: 2px solid #ffd100;
+        }
+        .careers-container {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: #232c3d;
+            border-radius: 0.7rem;
+            box-shadow: 0 2px 16px #0002;
+            padding: 2.5rem 2rem;
+        }
+        .careers-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd100;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .careers-section-title {
+            color: #ffd100;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .careers-section-title:first-child {
+            margin-top: 0;
+        }
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .careers-bold {
+            font-weight: 700;
+            color: #fff;
+        }
+        .careers-btn {
+            background: #0033a0;
+            color: #fff;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.3rem;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .careers-btn:hover {
+            background: #ffd100;
+            color: #0033a0;
+        }
+        a {
+            color: #ffd100;
+        }
+        .careers-note {
+            color: #b0bed9;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+        .officer-photo-careers {
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 0.4rem;
+            background: #101624;
+            border: 2px solid #334;
+            box-shadow: 0 2px 12px #0004;
+            margin-top: 1.5rem;
+        }
+        .careers-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+        .careers-flex-main {
+            flex: 2 1 300px;
+            min-width: 260px;
+        }
+        .careers-flex-photo {
+            flex: 1 1 180px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            min-width: 180px;
+        }
+        @media (max-width: 900px) {
+            .careers-flex {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .careers-flex-photo {
+                justify-content: flex-start;
+            }
+        }
+        @media (max-width: 700px) {
+            .careers-container {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="gov-bar"></div>
+        <div class="badge">
+            <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
+                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
+                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
+            </svg>
+        </div>
+        <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
+        <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About NVCPD</a></li>
+                <li><a href="roster.html">Officer Roster</a></li>
+                <li><a href="cases.html">Case Files</a></li>
+                <li><a href="codes.html">10-Codes</a></li>
+                <li><a href="careers.html" class="active">Careers</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="careers-container">
+            <div class="careers-title">Careers at NVCPD</div>
+            <div class="careers-flex">
+                <div class="careers-flex-main">
+                    <div>
+                        The NVCPD is always looking for individuals who are committed to justice, teamwork, and integrity. If you want to make a difference in Nowhereville, consider applying today.
+                    </div>
+                    <div class="careers-section-title">Requirements</div>
+                    <ul>
+                        <li>Must be at least 13 years old</li>
+                        <li>Active and respectful within the community</li>
+                        <li>Roblox account in good standing</li>
+                        <li>Willing to follow orders and chain of command</li>
+                        <li>Discord required for communication</li>
+                        <li><span class="careers-bold">MUST BE ACTIVE.</span></li>
+                    </ul>
+                    <div class="careers-section-title">Open Positions</div>
+                    <ul>
+                        <li><span class="careers-bold">Probationary Officer</span> &ndash; Entry-level patrol and support role</li>
+                        <li><span class="careers-bold">K9 Handler</span> &ndash; Partnered with trained canines</li>
+                        <li><span class="careers-bold">Recruitment Officer</span> &ndash; Help onboard new members and run interviews</li>
+                        <li><span class="careers-bold">Cybersecurity Officer</span> &ndash; Monitor and report community threats</li>
+                        <li><span class="careers-bold">PS&amp;CSU Officer</span> &ndash; Community outreach and safety enforcement</li>
+                        <li><span class="careers-bold">CIRT Operative</span> &ndash; Critical incident response, high-risk calls</li>
+                    </ul>
+                    <div class="careers-section-title">Apply Now</div>
+                    <div>
+                        To begin your application, join our Discord server and speak with a recruitment officer or Chief.
+                    </div>
+                    <a href="#" class="careers-btn">Join Discord</a>
+                    <div class="careers-note">
+                        If you have questions, email us at: <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a>
+                    </div>
+                </div>
+                <div class="careers-flex-photo">
+                    <img src="images/happi.png" alt="Officer" class="officer-photo-careers">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 Nowhereville County Police Department. All rights reserved.<br>
+        Contact us at <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a> | 
+        <a href="#">Join our Discord</a>
+    </footer>
+</body>
+</html>
