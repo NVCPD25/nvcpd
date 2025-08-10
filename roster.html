@@ -195,6 +195,11 @@
             color: #ffd100;
             text-decoration: underline;
         }
+        .nameplate-icon {
+            height: 42px;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
     </style>
     <script>
         // Simple filtering logic for demonstration
@@ -225,13 +230,6 @@
 <body>
     <header>
         <div class="gov-bar"></div>
-        <div class="badge">
-            <svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="4"/>
-                <polygon points="32,12 38,28 56,28 41,38 47,54 32,44 17,54 23,38 8,28 26,28" fill="#fff" opacity="0.2"/>
-                <circle cx="32" cy="32" r="10" fill="#fff" opacity="0.5"/>
-            </svg>
-        </div>
         <h1>NOWHEREVILLE COUNTY POLICE DEPARTMENT</h1>
         <p><em>Serving and Protecting the Citizens of Nowhereville County</em></p>
         <nav>
@@ -276,16 +274,10 @@
                     </thead>
                     <tbody>
                         <tr class="officer-row" data-section="high-command" data-name="Cameron M." data-badge="0000" data-rank="Commissioner">
-                            <td><img src="images/cameron.jpg" alt="Cameron M." class="officer-photo"></td>
+                            <td><img src="images/cameron.png" alt="Cameron M." class="officer-photo"></td>
                             <td>
                                 <div class="officer-name-badge">
-                                    Cameron M.
-                                    <span class="mini-badge">
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
-                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
-                                        </svg>
-                                    </span>
+                                    Cameron M. <img src="images/badge01.png" class="nameplate-icon"></td>
                                 </div>
                             </td>
                             <td>Commissioner</td>
@@ -296,13 +288,7 @@
                             <td><img src="images/chief.jpg" alt="Shane K." class="officer-photo"></td>
                             <td>
                                 <div class="officer-name-badge">
-                                    Shane K.
-                                    <span class="mini-badge">
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
-                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
-                                        </svg>
-                                    </span>
+                                    Shane K. <img src="images/badge02.png" class="nameplate-icon">
                                 </div>
                             </td>
                             <td>Chief</td>
@@ -328,20 +314,14 @@
                     </thead>
                     <tbody>
                         <tr class="officer-row" data-section="cirt" data-name="Alex R." data-badge="1001" data-rank="Sergeant">
-                            <td><img src="images/alexr.jpg" alt="Alex R." class="officer-photo"></td>
+                            <td><img src="images/placeholder.png" alt="Officer Portrait" class="officer-photo"></td>
                             <td>
                                 <div class="officer-name-badge">
-                                    Alex R.
-                                    <span class="mini-badge">
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
-                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
-                                        </svg>
-                                    </span>
+                                    John Doe. <img src="images/placeholder.png" class="nameplate-icon">
                                 </div>
                             </td>
                             <td>Sergeant</td>
-                            <td>1001</td>
+                            <td>0000</td>
                             <td><span class="status-active">Active</span></td>
                         </tr>
                     </tbody>
@@ -363,20 +343,14 @@
                     </thead>
                     <tbody>
                         <tr class="officer-row" data-section="plot" data-name="Jamie L." data-badge="2002" data-rank="Officer">
-                            <td><img src="images/jamiel.jpg" alt="Jamie L." class="officer-photo"></td>
+                            <td><img src="images/happi.png" alt="Eric D." class="officer-photo"></td>
                             <td>
                                 <div class="officer-name-badge">
-                                    Jamie L.
-                                    <span class="mini-badge">
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
-                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
-                                        </svg>
-                                    </span>
+                                    Eric D. <img src="images/badge03.png" class="nameplate-icon">
                                 </div>
                             </td>
-                            <td>Officer</td>
-                            <td>2002</td>
+                            <td>Unit Commander</td>
+                            <td>0511</td>
                             <td><span class="status-active">Active</span></td>
                         </tr>
                     </tbody>
@@ -398,20 +372,15 @@
                     </thead>
                     <tbody>
                         <tr class="officer-row" data-section="k9" data-name="Taylor S." data-badge="3003" data-rank="K9 Handler">
-                            <td><img src="images/taylors.jpg" alt="Taylor S." class="officer-photo"></td>
+                            <td><img src="images/placeholder.png" alt="Officer Portrait" class="officer-photo"></td>
                             <td>
                                 <div class="officer-name-badge">
-                                    Taylor S.
-                                    <span class="mini-badge">
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
-                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
-                                        </svg>
+                                    John Doe. <img src="images/placeholder.png" class="nameplate-icon">
                                     </span>
                                 </div>
                             </td>
                             <td>K9 Handler</td>
-                            <td>3003</td>
+                            <td>0000</td>
                             <td><span class="status-active">Active</span></td>
                         </tr>
                     </tbody>
@@ -433,37 +402,26 @@
                     </thead>
                     <tbody>
                         <tr class="officer-row" data-section="patrol" data-name="Morgan P." data-badge="4004" data-rank="Officer">
-                            <td><img src="images/morganp.jpg" alt="Morgan P." class="officer-photo"></td>
+                            <td><img src="images/placeholder.png" alt="Officer Portrait" class="officer-photo"></td>
                             <td>
                                 <div class="officer-name-badge">
-                                    Morgan P.
-                                    <span class="mini-badge">
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
-                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
-                                        </svg>
+                                    John Doe. <img src="images/placeholder.png" class="nameplate-icon">
                                     </span>
                                 </div>
                             </td>
                             <td>Officer</td>
-                            <td>4004</td>
+                            <td>0000</td>
                             <td><span class="status-active">Active</span></td>
                         </tr>
                         <tr class="officer-row" data-section="patrol" data-name="Jordan Q." data-badge="4005" data-rank="Officer">
-                            <td><img src="images/jordanq.jpg" alt="Jordan Q." class="officer-photo"></td>
+                            <td><img src="images/placeholder.png" alt="Officer Portrait." class="officer-photo"></td>
                             <td>
                                 <div class="officer-name-badge">
-                                    Jordan Q.
-                                    <span class="mini-badge">
-                                        <svg viewBox="0 0 20 20" fill="none">
-                                            <circle cx="10" cy="10" r="9" stroke="#fff" stroke-width="2"/>
-                                            <polygon points="10,3 12,9 18,9 13,13 15,17 10,14 5,17 7,13 2,9 8,9" fill="#fff" opacity="0.3"/>
-                                        </svg>
-                                    </span>
+                                    John Doe. <img src="images/placeholder.png" class="nameplate-icon">
                                 </div>
                             </td>
                             <td>Officer</td>
-                            <td>4005</td>
+                            <td>0000</td>
                             <td><span class="status-inactive">Inactive</span></td>
                         </tr>
                     </tbody>
@@ -472,4 +430,9 @@
         </div>
     </main>
     <footer>
-        &copy; 2025 Nowhereville
+           &copy; 2025 Nowhereville County Police Department<br>
+         <img src="images/novis_front.png" alt="NVCPD Logo" style="height: 80px;"><br>
+        Contact us at <a href="mailto:nvcpd.pr@gmail.com">nvcpd.pr@gmail.com</a> | 
+        <a href="#">Join our Discord</a>
+
+        <!-- <img src="https://i.imgur.com/iS0wGiL.png" class="nameplate-icon"></td> -->
