@@ -8,24 +8,11 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 10px;
-        }
-        .container {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            flex-wrap: wrap; /* allows stacking on small screens */
-        }
-        .text-section {
-            flex: 1;
-            min-width: 250px; /* prevents shrinking too much */
-        }
-        .image-section {
-            flex: 1;
-            min-width: 250px;
+            text-align: center; /* centers most text & images */
         }
         .stacked img {
             display: block;
-            margin-bottom: 10px;
+            margin: 10px auto; /* centers images */
             max-width: 100%;
             height: auto;
         }
@@ -33,50 +20,32 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
+            max-width: 800px;
+            margin: 20px auto; /* center the whole grid */
         }
         .grid img {
             width: 100%;
             height: auto;
             display: block;
         }
-        /* Mobile-friendly adjustments */
-        @media (max-width: 600px) {
-            .container {
-                flex-direction: column;
-            }
-        }
     </style>
 </head>
 <body>
+    <img src="images/images-removebg-preview.png" alt="bob sponge" style="height: 120px;">
+    <h1>Placeholder Page - Nowhere Ville County Police Department</h1>
+    <p>Site is still being worked on.</p>
+    <img src="images/n7z.png" alt="naz" style="height: 100px;">
+    <p>It's gonna be a cool site.</p>
+    <img src="images/novis_front.png" alt="mrpsinutbrain" style="height: 80px;">
 
-    <div class="container">
-        <!-- Text side -->
-        <div class="text-section">
-            <h1>Placeholder Page - Nowhere Ville County Police Department</h1>
-            <p>Site is still being worked on.</p>
-            <p>It's gonna be a cool site.</p>
-        </div>
-
-        <!-- Images side -->
-        <div class="image-section">
-            <!-- Stacked images (normal ones) -->
-            <div class="stacked">
-                <img src="images/images-removebg-preview.png" alt="bob sponge" style="height: 120px;">
-                <img src="images/n7z.png" alt="naz" style="height: 100px;">
-                <img src="images/fm_chubby02.png" alt="feline_monster" style="height: 80px;">
-                <img src="images/novis_front.png" alt="mrpsinutbrain" style="height: 80px;">
-            </div>
-
-            <!-- Feline Monster grid -->
-            <h2>Feline Monster Pictures</h2>
-            <div class="grid">
-                <img src="images/fm_face.png" alt="cat1">
-                <img src="images/D356B4E1-22BB-4999-9F81-40BFB6835A0C.jpg" alt="cat3">
-                <img src="images/fm_sleepy.png" alt="cat2">
-                <img src="images/fm_chubby.png" alt="cat4">
-                <img src="images/fm_2025.png" alt="cat5">
-            </div>
-        </div>
+    <!-- feline monster section -->
+    <h2>Feline Monster Pictures</h2>
+    <div class="grid">
+        <img src="images/fm_face.png" alt="cat1">
+        <img src="images/D356B4E1-22BB-4999-9F81-40BFB6835A0C.jpg" alt="cat3">
+        <img src="images/fm_sleepy.png" alt="cat2">
+        <img src="images/fm_chubby.png" alt="cat4">
+        <img src="images/fm_2025.png" alt="cat5">
     </div>
 
 </body>
