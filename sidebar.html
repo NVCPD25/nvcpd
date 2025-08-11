@@ -3,14 +3,15 @@
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    width: 120px;
+    width: 120px; /* banner width */
+    height: 600px; /* banner height */
     z-index: 9999;
   }
   .side-banner img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    margin-bottom: 10px;
     border-radius: 5px;
   }
   .side-banner.left {
@@ -19,15 +20,19 @@
   .side-banner.right {
     right: 0;
   }
+
+  /* Hide on small screens */
+  @media (max-width: 768px) {
+    .side-banner {
+      display: none;
+    }
+  }
 </style>
 
 <div class="side-banner left">
-  <a href="#"><img src="images/fm_chubby02.png" alt="Left Banner 1"></a>
-  <a href="#"><img src="images/novis.png" alt="Left Banner 2"></a>
+  <a href="#"><img src="left-banner.jpg" alt="Left Banner"></a>
 </div>
 
 <div class="side-banner right">
-  <a href="#"><img src="images/fm_sleepy.png" alt="Right Banner 1"></a>
-  <a href="#"><img src="images/D356B4E1-22BB-4999-9F81-40BFB6835A0C.jpg" alt="Right Banner 2"></a>
+  <a href="#"><img src="right-banner.jpg" alt="Right Banner"></a>
 </div>
-
